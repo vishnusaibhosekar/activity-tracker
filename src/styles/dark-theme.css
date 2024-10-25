@@ -1,0 +1,78 @@
+/* Dark Mode - Black Theme */
+body {
+  background-color: #000000; /* Pure black background */
+  color: #f8fafc; /* Light text for readability */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* App Wrapper */
+.App.dark {
+  background-color: #000000;
+}
+
+/* Header Styles */
+header h1 {
+  color: #f8fafc;
+  transition: color 0.3s;
+}
+
+/* Input Field */
+.input-field {
+  background-color: #1c1c1c;
+  border: 1px solid #2e2e2e;
+  color: #f8fafc;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.input-field::placeholder {
+  color: #a3a3a3;
+}
+
+/* Buttons */
+.add-button {
+  background-color: #3b3b3b;
+  color: #f8fafc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.add-button:hover {
+  background-color: #555555;
+  transform: scale(1.05);
+}
+
+/* Table Header */
+th {
+  background-color: #1c1c1c;
+  color: #f8fafc;
+  border: 1px solid #2e2e2e;
+}
+
+/* Table Rows */
+tbody tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #111111;
+}
+
+td {
+  color: #f1f1f1;
+  border: 1px solid #2e2e2e;
+}
+
+/* Pomodoro Timer Buttons */
+.btn {
+  background-color: #2e2e2e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #444444;
+}

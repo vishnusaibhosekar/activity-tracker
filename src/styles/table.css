@@ -1,0 +1,50 @@
+/* Table */
+table {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header and Cells */
+th,
+td {
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+th {
+  background-color: #f1f5f9;
+  color: #1f2937;
+  font-weight: bold;
+}
+
+/* Row Alternation */
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Dark Mode Table */
+.App.dark table {
+  background-color: #1e293b;
+}
+
+.App.dark th {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.App.dark td {
+  color: #e2e8f0;
+}
+
+.App.dark tbody tr:nth-child(even) {
+  background-color: #1f2937;
+}
+
+.App.dark tbody tr:nth-child(odd) {
+  background-color: #24303e;
+}

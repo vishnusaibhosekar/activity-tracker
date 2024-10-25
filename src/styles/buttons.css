@@ -1,0 +1,39 @@
+/* General Button Styles */
+.btn {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Blue Button */
+.btn-blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-blue:hover {
+  background-color: #2563eb;
+}
+
+/* Gray Button */
+.btn-gray {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-gray:hover {
+  background-color: #4b5563;
+}
+
+/* Red Button */
+.btn-red {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #dc2626;
+}
