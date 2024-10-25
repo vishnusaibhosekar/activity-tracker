@@ -167,33 +167,52 @@ Before working on your branch, pull the latest changes from main:
 
 ## Pull Request and Merge Workflow
 
-**Create a Feature Branch:**
+1. **Create a Feature Branch:**
 
 ```bash
 git checkout -b feature-your-feature-name
 ```
 
-**Push the Branch to GitHub:**
+2. **Push the Branch to GitHub:**
 
 ```bash
 git push origin feature-your-feature-name
 ```
 
-**Open a Pull Request (PR):**
-Go to the Pull Requests tab in the repository.
-Click New Pull Request and choose your feature branch.
+3. **Open a Pull Request (PR):**
+   Go to the Pull Requests tab in the repository.
+   Click New Pull Request and choose your feature branch.
 
-**Collaborate on the PR:**
-Assign reviewers or leave comments as needed.
-Reviewers approve or request changes.
+4. **Collaborate on the PR:**
+   Assign reviewers or leave comments as needed.
+   Reviewers approve or request changes.
 
-**Merge the PR:**
-Click Merge Pull Request and Confirm Merge.
-Delete the branch (optional).
+5. **Merge the PR:**
+   Click Merge Pull Request and Confirm Merge.
+   Delete the branch (optional).
 
-**Pull the Latest Changes Locally:**
+6. **Pull the Latest Changes Locally:**
 
 ```bash
 git checkout main
 git pull origin main
 ```
+
+## Deployment
+
+The app is deployed using **Vercel**. Visit the following link to access the app:
+
+[Live App](https://activity-tracker.vercel.app) (Replace with your deployment URL)
+
+### How to Deploy Updates
+
+1. Make sure your latest changes are committed and pushed to GitHub:
+
+   ```bash
+   git add .
+   git commit -m "Update: Description of changes"
+   git push origin main
+
+   ```
+
+2. Vercel will automatically detect changes and deploy the latest version.
