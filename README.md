@@ -149,7 +149,7 @@ Commit and Push Changes:
     git push origin feature-branch-name
 ```
 
-Open a Pull Request:
+## Open a Pull Request:
 
 Go to the repository on GitHub.
 Open a Pull Request from your feature branch to main.
@@ -163,4 +163,37 @@ Before working on your branch, pull the latest changes from main:
     git pull origin main
     git checkout your-branch-name
     git merge main
+```
+
+## Pull Request and Merge Workflow
+
+**Create a Feature Branch:**
+
+```bash
+git checkout -b feature-your-feature-name
+```
+
+**Push the Branch to GitHub:**
+
+```bash
+git push origin feature-your-feature-name
+```
+
+**Open a Pull Request (PR):**
+Go to the Pull Requests tab in the repository.
+Click New Pull Request and choose your feature branch.
+
+**Collaborate on the PR:**
+Assign reviewers or leave comments as needed.
+Reviewers approve or request changes.
+
+**Merge the PR:**
+Click Merge Pull Request and Confirm Merge.
+Delete the branch (optional).
+
+**Pull the Latest Changes Locally:**
+
+```bash
+git checkout main
+git pull origin main
 ```
