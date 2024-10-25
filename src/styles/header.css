@@ -1,0 +1,43 @@
+/* Header Container */
+header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Title Styling */
+.header-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Light and Dark Mode Title Colors */
+.App.light .header-title {
+  color: #1f2937;
+}
+
+.App.dark .header-title {
+  color: #f8fafc;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: transform 0.3s ease, filter 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2); /* Slight glow effect on hover */
+}
+
+.theme-toggle:focus {
+  outline: none;
+}

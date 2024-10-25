@@ -3,11 +3,14 @@ import { supabase } from "./services/supabaseClient";
 import Header from "./components/Header";
 import ActivityTable from "./components/ActivityTable";
 
-/* Import global and component styles */
+/* Import all styles globally */
 import "./styles/global.css";
 import "./styles/buttons.css";
 import "./styles/input.css";
 import "./styles/table.css";
+import "./styles/header.css";
+import "./styles/light-theme.css";
+import "./styles/dark-theme.css";
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -16,14 +19,23 @@ function App() {
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
 
-  // Apply theme-specific CSS on initial load and when darkMode changes
+  // Sync the theme class with the <body> element for global effect
   useEffect(() => {
-    const theme = darkMode ? "dark-theme.css" : "light-theme.css";
-    import(`./styles/${theme}`);
+    const body = document.body;
+
+    if (darkMode) {
+      body.classList.add("dark");
+      body.classList.remove("light");
+    } else {
+      body.classList.add("light");
+      body.classList.remove("dark");
+    }
+
+    console.log(`Current Theme: ${darkMode ? "Dark Mode" : "Light Mode"}`);
+
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
-  // Fetch activities on mount and set up real-time listener
   useEffect(() => {
     fetchActivities();
 
@@ -37,11 +49,10 @@ function App() {
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel); // Clean up listener on unmount
+      supabase.removeChannel(channel);
     };
   }, []);
 
-  // Fetch activities from Supabase
   const fetchActivities = async () => {
     const { data, error } = await supabase
       .from("activities")
@@ -56,7 +67,6 @@ function App() {
     setActivities(data);
   };
 
-  // Add a new activity to the list
   const addActivity = async () => {
     if (newActivity.trim()) {
       const { error } = await supabase
@@ -68,12 +78,11 @@ function App() {
         return;
       }
 
-      setNewActivity(""); // Clear input field
-      fetchActivities(); // Refresh the list
+      setNewActivity("");
+      fetchActivities();
     }
   };
 
-  // Start an activity (sets start time)
   const startActivity = async (id) => {
     const { error } = await supabase
       .from("activities")
@@ -85,10 +94,9 @@ function App() {
       return;
     }
 
-    fetchActivities(); // Refresh the list
+    fetchActivities();
   };
 
-  // Finish an activity (sets end time and marks as completed)
   const finishActivity = async (id) => {
     const { error } = await supabase
       .from("activities")
@@ -103,7 +111,7 @@ function App() {
       return;
     }
 
-    fetchActivities(); // Refresh the list
+    fetchActivities();
   };
 
   return (
