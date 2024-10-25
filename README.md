@@ -7,7 +7,7 @@ This is a cross-platform activity tracking app with a built-in Pomodoro timer. U
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/activity-tracker.git
+git clone https://github.com/https://github.com/vishnusaibhosekar/activity-tracker/activity-tracker.git
 cd activity-tracker
 ```
 
@@ -88,3 +88,40 @@ git push origin feature-your-feature-name
 - Daily/weekly activity reports.
 - Dark mode.
 - Sync with Google Calendar.
+
+## How to Collaborate
+
+1. **Accept the Invitation:**
+
+   - Open the invite link sent to your GitHub account and accept it.
+
+2. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/https://github.com/vishnusaibhosekar/activity-tracker/activity-tracker.git
+   cd activity-tracker
+   ```
+
+3. **Create Your Feature Branch:**
+
+   ```bash
+   git checkout -b feature-new-activity-page
+   ```
+
+4. **Make Changes and Commit:**
+
+   ```bash
+   git add .
+   git commit -m "Add: New Activity Page"
+   ```
+
+5. **Push Your Changes:**
+
+   ```bash
+   git push origin feature-new-activity-page
+   ```
+
+6. **Open a Pull Request:**
+   - Go to the repository on GitHub.
+   - Open a **Pull Request** from your feature branch to the `main` branch.
+   - Collaborate on reviews and merge the changes.
