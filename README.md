@@ -125,3 +125,42 @@ git push origin feature-your-feature-name
    - Go to the repository on GitHub.
    - Open a **Pull Request** from your feature branch to the `main` branch.
    - Collaborate on reviews and merge the changes.
+
+## Branch Naming Conventions
+
+- **feature-xxx**: For new features (e.g., `feature-pomodoro-timer`).
+- **fix-xxx**: For bug fixes (e.g., `fix-bug-in-timer`).
+- **hotfix-xxx**: For urgent changes (e.g., `hotfix-timer-crash`).
+
+---
+
+## Workflow for Contributing
+
+**Create a Branch:**
+`bash
+git checkout -b feature-branch-name
+`
+
+Commit and Push Changes:
+
+```bash
+    git add .
+    git commit -m "Add: Description of the feature"
+    git push origin feature-branch-name
+```
+
+Open a Pull Request:
+
+Go to the repository on GitHub.
+Open a Pull Request from your feature branch to main.
+Collaborate on code review and merge the changes.
+
+Keep Branches in Sync:
+Before working on your branch, pull the latest changes from main:
+
+```bash
+    git checkout main
+    git pull origin main
+    git checkout your-branch-name
+    git merge main
+```
