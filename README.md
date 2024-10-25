@@ -1,5 +1,3 @@
-Here is the reformatted text in Markdown format:
-
 # **Activity Tracker App**
 
 This is a cross-platform activity tracking app with a built-in Pomodoro timer. Use it on both desktop and mobile to stay productive!
