@@ -1,10 +1,32 @@
-import PomodoroTimer from "./PomodoroTimer";
+import { useState, useEffect } from "react";
+import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
+import "@leenguyen/react-flip-clock-countdown/dist/index.css";
 
 export default function ActivityTable({
   activities,
   startActivity,
   finishActivity,
 }) {
+  const [timers, setTimers] = useState({});
+
+  useEffect(() => {
+    const newTimers = {};
+    activities.forEach((activity) => {
+      if (activity.start_time && !activity.end_time) {
+        const startTime = new Date(activity.start_time).getTime();
+        const endTime = startTime + 25 * 60 * 1000; // Example: 25 minutes Pomodoro timer
+        const remainingTime = endTime - new Date().getTime();
+
+        if (remainingTime > 0) {
+          newTimers[activity.id] = remainingTime;
+        } else {
+          finishActivity(activity.id); // Automatically finish if time is up
+        }
+      }
+    });
+    setTimers(newTimers);
+  }, [activities, finishActivity]);
+
   return (
     <table className="mt-6">
       <thead>
@@ -40,15 +62,23 @@ export default function ActivityTable({
               ) : activity.end_time ? (
                 "Finished"
               ) : (
-                <>
-                  <PomodoroTimer />
+                <div className="flip-timer-container">
+                  {timers[activity.id] && (
+                    <FlipClockCountdown
+                      to={new Date().getTime() + timers[activity.id]}
+                      className="flip-clock"
+                      showLabels={false}
+                      showSeparators={true}
+                      onFinish={() => finishActivity(activity.id)}
+                    />
+                  )}
                   <button
-                    onClick={() => finishActivity(activity.id, activity.title)}
+                    onClick={() => finishActivity(activity.id)}
                     className="btn btn-red"
                   >
                     Finish
                   </button>
-                </>
+                </div>
               )}
             </td>
           </tr>

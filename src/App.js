@@ -12,6 +12,7 @@ import "./styles/table.css";
 import "./styles/header.css";
 import "./styles/light-theme.css";
 import "./styles/dark-theme.css";
+import "./styles/flipclock.css";
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -87,7 +88,6 @@ function App() {
       console.error("Error starting activity:", error);
       return;
     }
-
     fetchActivities();
   };
 
