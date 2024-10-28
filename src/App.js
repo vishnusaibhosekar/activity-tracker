@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./services/supabaseClient";
 import Header from "./components/Header";
 import ActivityTable from "./components/ActivityTable";
-import AddActivity from "./components/AddActivity"; // Import new component
+import InputField from "./components/InputField";
 
 /* Import all styles globally */
 import "./styles/global.css";
@@ -12,7 +12,6 @@ import "./styles/table.css";
 import "./styles/header.css";
 import "./styles/light-theme.css";
 import "./styles/dark-theme.css";
-import "./styles/flipclock.css";
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -23,16 +22,8 @@ function App() {
   // Sync the theme class with the <body> element for global effect
   useEffect(() => {
     const body = document.body;
-
-    if (darkMode) {
-      body.classList.add("dark");
-      body.classList.remove("light");
-    } else {
-      body.classList.add("light");
-      body.classList.remove("dark");
-    }
-
-    console.log(`Current Theme: ${darkMode ? "Dark Mode" : "Light Mode"}`);
+    body.classList.toggle("dark", darkMode);
+    body.classList.toggle("light", !darkMode);
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
@@ -67,17 +58,6 @@ function App() {
     setActivities(data);
   };
 
-  const addActivity = async (title) => {
-    const { error } = await supabase.from("activities").insert([{ title }]);
-
-    if (error) {
-      console.error("Error adding activity:", error);
-      return;
-    }
-
-    fetchActivities();
-  };
-
   const startActivity = async (id) => {
     const { error } = await supabase
       .from("activities")
@@ -88,7 +68,39 @@ function App() {
       console.error("Error starting activity:", error);
       return;
     }
+
     fetchActivities();
+  };
+
+  const takeBreak = async (id) => {
+    const { error } = await supabase
+      .from("activities")
+      .update({
+        on_break: true,
+        paused_at: new Date(), // Store when the activity was paused
+      })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error taking break:", error);
+      return;
+    }
+    fetchActivities(); // Refresh the activity list
+  };
+
+  const resumeActivity = async (id) => {
+    const { error } = await supabase
+      .from("activities")
+      .update({
+        on_break: false,
+      })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error resuming activity:", error);
+      return;
+    }
+    fetchActivities(); // Refresh the activity list
   };
 
   const finishActivity = async (id) => {
@@ -108,11 +120,13 @@ function App() {
   return (
     <div className={`App ${darkMode ? "dark" : "light"}`}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <AddActivity addActivity={addActivity} /> {/* Use new component */}
+      <InputField fetchActivities={fetchActivities} />
       <ActivityTable
         activities={activities}
         startActivity={startActivity}
         finishActivity={finishActivity}
+        takeBreak={takeBreak}
+        resumeActivity={resumeActivity}
       />
     </div>
   );

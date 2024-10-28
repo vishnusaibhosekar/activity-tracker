@@ -45,3 +45,13 @@ tbody tr:hover {
 .App.dark tbody tr:hover {
   background-color: #4a4c4e;
 }
+
+.timer-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.flip-timer {
+  margin: 0 auto;
+  transform: scale(0.75); /* Adjust timer size */
+}
