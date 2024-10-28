@@ -1,32 +1,38 @@
-/* Button Styles */
-.add-button {
+/* General Button Styles */
+.btn {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #3b82f6;
-  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s, transform 0.2s ease;
+  margin: 0 5px;
 }
 
-/* Hover and Active States */
-.add-button:hover {
+.btn-blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-blue:hover {
   background-color: #2563eb;
-  transform: scale(1.05);
 }
 
-.add-button:active {
-  background-color: #1d4ed8;
+.btn-gray {
+  background-color: #6b7280;
+  color: white;
 }
 
-/* Dark Mode Button Styling */
-.App.dark .add-button {
-  background-color: #1f2937;
-  color: #f8fafc;
+.btn-gray:hover {
+  background-color: #4b5563;
 }
 
-.App.dark .add-button:hover {
-  background-color: #374151;
+.btn-red {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-red:hover {
+  background-color: #dc2626;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "./services/supabaseClient";
 import Header from "./components/Header";
 import ActivityTable from "./components/ActivityTable";
+import AddActivity from "./components/AddActivity"; // Import new component
 
 /* Import all styles globally */
 import "./styles/global.css";
@@ -14,7 +15,6 @@ import "./styles/dark-theme.css";
 
 function App() {
   const [activities, setActivities] = useState([]);
-  const [newActivity, setNewActivity] = useState("");
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
@@ -32,7 +32,6 @@ function App() {
     }
 
     console.log(`Current Theme: ${darkMode ? "Dark Mode" : "Light Mode"}`);
-
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
   }, [darkMode]);
 
@@ -67,20 +66,15 @@ function App() {
     setActivities(data);
   };
 
-  const addActivity = async () => {
-    if (newActivity.trim()) {
-      const { error } = await supabase
-        .from("activities")
-        .insert([{ title: newActivity }]);
+  const addActivity = async (title) => {
+    const { error } = await supabase.from("activities").insert([{ title }]);
 
-      if (error) {
-        console.error("Error adding activity:", error);
-        return;
-      }
-
-      setNewActivity("");
-      fetchActivities();
+    if (error) {
+      console.error("Error adding activity:", error);
+      return;
     }
+
+    fetchActivities();
   };
 
   const startActivity = async (id) => {
@@ -100,10 +94,7 @@ function App() {
   const finishActivity = async (id) => {
     const { error } = await supabase
       .from("activities")
-      .update({
-        end_time: new Date(),
-        completed: true,
-      })
+      .update({ end_time: new Date(), completed: true })
       .eq("id", id);
 
     if (error) {
@@ -117,19 +108,7 @@ function App() {
   return (
     <div className={`App ${darkMode ? "dark" : "light"}`}>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-
-      <div className="input-container">
-        <input
-          className="input-field"
-          value={newActivity}
-          onChange={(e) => setNewActivity(e.target.value)}
-          placeholder="New activity"
-        />
-        <button onClick={addActivity} className="add-button">
-          Add Activity
-        </button>
-      </div>
-
+      <AddActivity addActivity={addActivity} /> {/* Use new component */}
       <ActivityTable
         activities={activities}
         startActivity={startActivity}
